@@ -1,8 +1,10 @@
 import gradio as gr
 from prompt_defender import PromptDefenderClassifier
 
+
 # Инициализация классификатора
 classifier = PromptDefenderClassifier()
+
 
 def classify_prompt(prompt):
     """
@@ -16,6 +18,7 @@ def classify_prompt(prompt):
     except Exception as e:
         return f"Ошибка: {str(e)}"
 
+
 # Кастомный минималистичный дизайн
 with gr.Blocks(css=".gradio-container {background-color: white; font-family: Arial; text-align: center;}") as interface:
     gr.Markdown(
@@ -25,7 +28,7 @@ with gr.Blocks(css=".gradio-container {background-color: white; font-family: Ari
         """, 
         elem_id="header"
     )
-    
+
     with gr.Row():
         with gr.Column(scale=1, min_width=600):
             input_text = gr.Textbox(
@@ -44,7 +47,7 @@ with gr.Blocks(css=".gradio-container {background-color: white; font-family: Ari
     # Логика связывания ввода, кнопки и результата
     submit_button.click(classify_prompt, inputs=input_text, outputs=result_text)
 
+
 # Запуск Gradio
 if __name__ == "__main__":
-    #interface.launch(server_name="0.0.0.0", server_port=7860) #для локального запуска
-    interface.launch(server_name="0.0.0.0", server_port=7860, share=True)
+    interface.launch(server_name="0.0.0.0", server_port=7860)
