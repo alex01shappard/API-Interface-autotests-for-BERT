@@ -1,3 +1,14 @@
+name: CI Pipeline
+
+# Указываем события, которые должны запускать пайплайн
+on:
+  push:
+    branches:
+      - main   # Запускать на пуши в ветку main
+  pull_request:
+    branches:
+      - main   # Запускать при создании pull request'ов в ветку main
+
 jobs:
   lint:
     runs-on: ubuntu-latest
